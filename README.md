@@ -109,6 +109,32 @@ The app stores data in:
 - `~/.linkedin_sweep/items.json`
 - `~/.linkedin_sweep/collector_status.json`
 
+## Service mode
+
+A user-level systemd service can run the app continuously.
+
+Service file:
+
+- `~/.config/systemd/user/linkedin-sweep.service`
+
+Useful commands:
+
+```bash
+systemctl --user status linkedin-sweep.service
+systemctl --user restart linkedin-sweep.service
+journalctl --user -u linkedin-sweep.service -n 100 --no-pager
+```
+
+Current runner configuration binds Streamlit to:
+
+- `0.0.0.0:8502`
+
+So if the host is reachable on your tailnet, you can access it with:
+
+```text
+http://<tailnet-hostname>:8502
+```
+
 ## Next logical step
 
 Implement a real Playwright collector that:
